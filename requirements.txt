@@ -1,0 +1,7 @@
+pytest
+pytest-cov
+Flask
+grpcio
+grpcio-tools
+pytest-grpc
+protobuf

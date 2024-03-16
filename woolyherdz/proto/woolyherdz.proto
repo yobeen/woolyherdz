@@ -1,0 +1,65 @@
+syntax = "proto3";
+
+package woolyherdz;
+
+// The Woolyherdz service definition.
+service WoolyherdzService {
+  // Uploads a dataset for processing
+  rpc UploadDataset (UploadDatasetRequest) returns (UploadDatasetResponse) {}
+
+  // Trains a model with the specified dataset
+  rpc TrainModel (TrainModelRequest) returns (TrainModelResponse) {}
+
+  // Makes predictions with the trained model
+  rpc Predict (PredictRequest) returns (PredictResponse) {}
+
+  // Gets the status of a specific task
+  rpc GetStatus (StatusRequest) returns (StatusResponse) {}
+}
+
+// Request message for uploading a dataset
+message UploadDatasetRequest {
+  string token = 1;
+  bytes dataset = 2;
+}
+
+// Response message for uploading a dataset
+message UploadDatasetResponse {
+  string status = 1;
+}
+
+// Request message for training a model
+message TrainModelRequest {
+  string token = 1;
+  string datasetId = 2;
+  // Additional parameters for training could be added here
+}
+
+// Response message for training a model
+message TrainModelResponse {
+  string modelId = 1;
+  string status = 2;
+}
+
+// Request message for making predictions
+message PredictRequest {
+  string token = 1;
+  string modelId = 2;
+  bytes inputData = 3;
+}
+
+// Response message for making predictions
+message PredictResponse {
+  string outputData = 1;
+}
+
+// Request message for getting the status of a task
+message StatusRequest {
+  string token = 1;
+  string taskId = 2;
+}
+
+// Response message for getting the status of a task
+message StatusResponse {
+  string status = 1;
+}
